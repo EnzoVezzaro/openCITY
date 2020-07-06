@@ -1,0 +1,22 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-opencity-dev-183941-authRole",
+            "UnauthRoleArn": "arn:aws:iam::835297167439:role/amplify-opencity-dev-183941-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::835297167439:role/amplify-opencity-dev-183941-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-opencity-dev-183941-deployment",
+            "UnauthRoleName": "amplify-opencity-dev-183941-unauthRole",
+            "StackName": "amplify-opencity-dev-183941",
+            "StackId": "arn:aws:cloudformation:us-east-1:835297167439:stack/amplify-opencity-dev-183941/4cbd4ee0-bfa7-11ea-868e-12305fa4f4bd",
+            "AmplifyAppId": "dsh2tnd5qs2hr"
+        },
+        "categories": {
+            "auth": {
+                "opencity55b1827d": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"902901530204943\",\"client_secret\":\"4b8ba8fb8de401cbd2801826674faa6b\"},{\"ProviderName\":\"Google\",\"client_id\":\"902901530204943\",\"client_secret\":\"4b8ba8fb8de401cbd2801826674faa6b\"}]"
+                }
+            }
+        }
+    }
+}

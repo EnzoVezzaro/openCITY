@@ -1,0 +1,17 @@
+{
+    "projectName": "openCITY",
+    "version": "3.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": "app",
+            "DistributionDir": "build",
+            "BuildCommand": "npm build:prod",
+            "StartCommand": "npm start"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}
