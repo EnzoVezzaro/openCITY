@@ -1,6 +1,6 @@
 projects:
   opencity:
-    schemaPath: src/graphql/schema.json
+    schemaPath: app/graphql/schema.json
     includes:
       - app/graphql/**/*.js
     excludes:
@@ -9,4 +9,4 @@ projects:
       amplify:
         codeGenTarget: javascript
         generatedFileName: ''
-        docsFilePath: src/graphql
+        docsFilePath: app/graphql

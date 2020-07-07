@@ -3,10 +3,10 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
-    "aws_cognito_identity_pool_id": "us-east-1:28ff9cfa-99f1-4663-b881-fd9538e25d7f",
+    "aws_cognito_identity_pool_id": "us-east-1:990df256-5300-4ad3-8ed0-b591c502cb2d",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_59vvLbe3h",
-    "aws_user_pools_web_client_id": "bcpg6njfja91mqk8893844n4d",
+    "aws_user_pools_id": "us-east-1_E6Tn50xQf",
+    "aws_user_pools_web_client_id": "77fn7q71bvn17o2tm0et3nvtl8",
     "oauth": {
         "domain": "opencity-dev.auth.us-east-1.amazoncognito.com",
         "scope": [
@@ -16,12 +16,12 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "http://localhost:4001/",
-        "redirectSignOut": "http://localhost:4001/",
+        "redirectSignIn": "http://localhost:3000/",
+        "redirectSignOut": "http://localhost:3000/",
         "responseType": "code"
     },
     "federationTarget": "COGNITO_USER_POOLS",
-    "aws_appsync_graphqlEndpoint": "https://liee2nyajrge3g3fxzuv6ajfam.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://yeixl346srf4dkpfasvazxe54q.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
 };

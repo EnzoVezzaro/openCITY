@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "opencity55b1827d_identitypool_55b1827d",
+    "identityPoolName": "opencity540956c9_identitypool_540956c9",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "openci55b1827d",
-    "userPoolName": "opencity55b1827d_userpool_55b1827d",
+    "resourceNameTruncated": "openci540956c9",
+    "userPoolName": "opencity540956c9_userpool_540956c9",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "openci55b1827d_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "openci540956c9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "55b1827d",
-    "resourceName": "opencity55b1827d",
+    "sharedId": "540956c9",
+    "resourceName": "opencity540956c9",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -56,7 +56,7 @@
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:4001/\"],\"LogoutURLs\":[\"http://localhost:4001/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
     "dependsOn": []
 }
