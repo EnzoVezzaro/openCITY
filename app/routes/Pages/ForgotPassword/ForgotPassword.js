@@ -52,10 +52,10 @@ const ForgotPassword = () => (
             { /* END Form */}
             { /* START Bottom Links */}
             <div className="d-flex mb-5">
-                <Link to="/pages/login" className="text-decoration-none">
+                <Link to="/login" className="text-decoration-none">
                     Login
                 </Link>
-                <Link to="/pages/register" className="ml-auto text-decoration-none">
+                <Link to="/register" className="ml-auto text-decoration-none">
                     Register
                 </Link>
             </div>

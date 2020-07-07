@@ -155,9 +155,9 @@ export const SidebarMiddleNav = () => (
             icon={<i className="fa fa-fw fa-copy"></i>}
             title="Pages"
         >
-            <SidebarMenu.Item title="Register" to="/pages/register" />
-            <SidebarMenu.Item title="Login" to="/pages/login" />
-            <SidebarMenu.Item title="Forgot Password" to="/pages/forgot-password" />
+            <SidebarMenu.Item title="Register" to="/register" />
+            <SidebarMenu.Item title="Login" to="/login" />
+            <SidebarMenu.Item title="Forgot Password" to="/forgot-password" />
             <SidebarMenu.Item title="Lock Screen" to="/pages/lock-screen" />
             <SidebarMenu.Item title="Error 404" to="/pages/error-404" />
             <SidebarMenu.Item title="Confirmation" to="/pages/confirmation" />

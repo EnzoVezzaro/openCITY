@@ -57,16 +57,17 @@ const Login = () => (
             { /* END Form */}
             { /* START Bottom Links */}
             <div className="d-flex mb-5"> 
-                <Link to="/pages/forgot-password" className="text-decoration-none">
+                <Link to="/forgot-password" className="text-decoration-none">
                     Forgot Password
                 </Link>
-                <Link to="/pages/register" className="ml-auto text-decoration-none">
+                <Link to="/register" className="ml-auto text-decoration-none">
                     Register
                 </Link>
             </div>
             { /* END Bottom Links */}
-            { /* START Footer */}
+            { /* START Footer 
             <FooterAuth />
+            */}
             { /* END Footer */}
         </EmptyLayout.Section>
     </EmptyLayout>
