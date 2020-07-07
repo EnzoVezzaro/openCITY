@@ -18,7 +18,7 @@ var config = {
     srcHtmlLayout:          path.join(root, 'app', 'index.html'),
 
     // Site Config ====================================================
-    siteTitle:              'OpenCITY',
+    siteTitle:              'OpenCity',
     siteDescription:        'lorem ipsum',
     siteCannonicalUrl:      'http://localhost:4100',
     siteKeywords:           'lorem ipsum',
