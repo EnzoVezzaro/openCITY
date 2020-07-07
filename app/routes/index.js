@@ -114,7 +114,7 @@ import { SidebarASidebar } from './../layout/components/SidebarASidebar';
 export const RoutedContent = () => {
     return (
         <Switch>
-            <Redirect from="/" to="/dashboards/projects" exact />
+            <Redirect from="/" to="/pages/login" exact />
             
             <Route path="/dashboards/analytics" exact component={Analytics} />
             <Route path="/dashboards/projects" exact component={ProjectsDashboard} />

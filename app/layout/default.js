@@ -52,7 +52,7 @@ class AppLayout extends React.Component {
                         { children }
                     </Layout.Content>
 
-                    { /* -- Theme Selector (DEMO) ----*/ }
+                    { /* -- Theme Selector (DEMO) 
                     <PageConfigConsumer>
                     {
                         ({ sidebarHidden, navbarHidden }) => (
@@ -60,6 +60,7 @@ class AppLayout extends React.Component {
                         )
                     }
                     </PageConfigConsumer>
+                    ----*/ }
                 </Layout>
             </ThemeProvider>
         );

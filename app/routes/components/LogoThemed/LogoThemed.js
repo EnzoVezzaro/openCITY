@@ -6,7 +6,7 @@ import { ThemeConsumer } from '../../../components/Theme';
 
 const logos = {
     'white': require('./../../../images/logos/logo-white.svg'),
-    'primary': require('./../../../images/logos/logo-primary.svg'),
+    'primary': require('./../../../images/logos/logo-main.svg'),
     'success': require('./../../../images/logos/logo-success.svg'),
     'warning': require('./../../../images/logos/logo-warning.svg'),
     'danger': require('./../../../images/logos/logo-danger.svg'),
@@ -14,7 +14,8 @@ const logos = {
     'indigo': require('./../../../images/logos/logo-indigo.svg'),
     'purple': require('./../../../images/logos/logo-purple.svg'),
     'pink': require('./../../../images/logos/logo-pink.svg'),
-    'yellow': require('./../../../images/logos/logo-yellow.svg')
+    'yellow': require('./../../../images/logos/logo-yellow.svg'),
+    'text': require('./../../../images/logos/logo-text.svg')
 }
 
 const getLogoUrl = (style, color) => {
@@ -30,18 +31,20 @@ const getLogoUrlBackground = (style, color) => {
     }
 }
 
-const LogoThemed = ({ checkBackground, className, ...otherProps }) => (
+const getLogoUrlSidebar = () => {
+    return logos['text'];
+}
+
+const LogoThemed = ({ checkBackground, onlyText, className, ...otherProps }) => (
     <ThemeConsumer>
     {
         ({ style, color }) => (
             <img
                 src={
-                    checkBackground ?
-                        getLogoUrlBackground(style, color) :
-                        getLogoUrl(style, color)
+                    onlyText ? getLogoUrlSidebar() : checkBackground ? getLogoUrlBackground(style, color) : getLogoUrl(style, color)
                 }
                 className={ classNames('d-block', className) }
-                alt="Airframe Logo"
+                alt={`OpenCity Logo`}
                 { ...otherProps }
             />
         )
@@ -50,6 +53,7 @@ const LogoThemed = ({ checkBackground, className, ...otherProps }) => (
 );
 LogoThemed.propTypes = {
     checkBackground: PropTypes.bool,
+    onlyText: PropTypes.bool,
     className: PropTypes.string,
 };
 

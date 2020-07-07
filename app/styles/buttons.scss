@@ -1,0 +1,12 @@
+.btn-primary {
+    color: #FFF;
+    background-image: linear-gradient(to right,#6b72c1,#b04fad);
+    border-color: transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-image: linear-gradient(to right,#6b72c1,#b04fad);
+    border-color: transparent;
+    opacity: 0.7;
+}

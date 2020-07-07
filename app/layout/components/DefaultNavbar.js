@@ -21,7 +21,7 @@ export const DefaultNavbar = () => (
             </NavItem>
             <NavItem className="navbar-brand d-lg-none">
                 <Link to="/">
-                    <LogoThemed />
+                    <LogoThemed onlyText height='20' />
                 </Link>
             </NavItem>
             <NavItem className="d-none d-md-block">

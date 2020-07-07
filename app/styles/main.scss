@@ -1,1 +1,8 @@
 @import '~@owczar/dashboard-style--airframe/scss/style';
+
+/* custom */
+@import "./sidemenu.scss";
+@import "./buttons.scss";
+@import "./navbar.scss";
+/* branding */
+@import "./branding.scss";

@@ -19,7 +19,7 @@ const SidebarTopA = () => (
     <React.Fragment>
         { /* START: Sidebar Default */ }
         <Sidebar.HideSlim>
-            <Sidebar.Section className="pt-0">
+            <Sidebar.Section className="">
                 <Link to="/" className="d-block">
                     <Sidebar.HideSlim>
                         <Avatar.Image

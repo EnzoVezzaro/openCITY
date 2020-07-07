@@ -21,7 +21,7 @@ const Login = () => (
         <EmptyLayout.Section center>
             { /* START Header */}
             <HeaderAuth 
-                title="Sign In to Application"
+                title=""
             />
             { /* END Header */}
             { /* START Form */}
@@ -47,7 +47,7 @@ const Login = () => (
                 <ThemeConsumer>
                 {
                     ({ color }) => (
-                        <Button color={ color } block tag={ Link } to="/">
+                        <Button color={ color } block tag={ Link } to="/dashboards/projects">
                             Sign In
                         </Button>
                     )
@@ -56,8 +56,8 @@ const Login = () => (
             </Form>
             { /* END Form */}
             { /* START Bottom Links */}
-            <div className="d-flex mb-5">
-                <Link to="/pages/forgotpassword" className="text-decoration-none">
+            <div className="d-flex mb-5"> 
+                <Link to="/pages/forgot-password" className="text-decoration-none">
                     Forgot Password
                 </Link>
                 <Link to="/pages/register" className="ml-auto text-decoration-none">

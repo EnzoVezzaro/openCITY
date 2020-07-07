@@ -22,14 +22,15 @@ export const DefaultSidebar = () => (
         </Sidebar.Close>
         { /* START SIDEBAR-OVERLAY: Close (x) */ }
         
-        { /* START SIDEBAR: Only for Desktop */ }
+        { /* START SIDEBAR: Only for Desktop 
         <Sidebar.HideSlim>
             <Sidebar.Section>
                 <Link to="/" className="sidebar__brand">
-                    <LogoThemed checkBackground />
+                    <LogoThemed onlyText className={'only-text'} height='30' />
                 </Link>
             </Sidebar.Section>
         </Sidebar.HideSlim>
+        */ }
         { /* END SIDEBAR: Only for Desktop */ }
 
         { /* START SIDEBAR: Only for Mobile */ }
