@@ -59,9 +59,9 @@ export class VersionSelector extends React.Component {
 
     render() {
         const { down, render, className, sidebar } = this.props;
-        const { versions } = this.state;
+        let { versions } = this.state;
         const currentVersion = _.find(versions, { label: "React" });
-
+        versions = '';
         return (
             <UncontrolledButtonDropdown direction={ down ? "down" : "up" } className={ className }>
                 <DropdownToggle
@@ -79,11 +79,14 @@ export class VersionSelector extends React.Component {
                         currentVersion ? (
                             render ? render(currentVersion) : (
                                 <React.Fragment>
-                                    React {currentVersion.version} <i className={`fa ${down ? "fa-angle-down" : "fa-angle-up"} ml-2`}></i>
-                                    <br />
-                                    <span className={ classNames('small', { 'sidebar__link--muted': sidebar }) }>
-                                        { moment(currentVersion.date).format("ddd, MMM DD, YYYY h:mm:ss A") }
-                                    </span>
+                                    {/* 
+                                        React {currentVersion.version} <i className={`fa ${down ? "fa-angle-down" : "fa-angle-up"} ml-2`}></i>
+                                        <br />
+                                        <span className={ classNames('small', { 'sidebar__link--muted': sidebar }) }>
+                                            { moment(currentVersion.date).format("ddd, MMM DD, YYYY h:mm:ss A") }
+                                        </span>
+                                    */}
+                                    v0.0.1
                                 </React.Fragment>
                             )
                         ) : (
