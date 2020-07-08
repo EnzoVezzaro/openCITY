@@ -47,7 +47,7 @@ const Login = () => (
                 <ThemeConsumer>
                 {
                     ({ color }) => (
-                        <Button color={ color } block tag={ Link } to="/dashboards/projects">
+                        <Button color={ color } block tag={ Link } to="/dashboards/analytics">
                             Sign In
                         </Button>
                     )
