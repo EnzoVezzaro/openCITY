@@ -4,6 +4,8 @@ import {
     Switch,
     Redirect
 } from 'react-router';
+// AWS Amplify 
+import { Auth } from 'aws-amplify';
 
 // ----------- Pages Imports ---------------
 import Analytics from './Dashboards/Analytics';
@@ -125,27 +127,6 @@ export const RoutedContent = () => {
         <Switch>
             <Redirect from="/" to="/login" exact />
             
-            <Route path="/dashboards/analytics" exact component={Analytics} />
-            <Route path="/dashboards/projects" exact component={ProjectsDashboard} />
-            <Route path="/dashboards/system" exact component={System} />
-            <Route path="/dashboards/monitor" exact component={Monitor} />
-            <Route path="/dashboards/financial" exact component={Financial} />
-            <Route path="/dashboards/stock" exact component={Stock} />
-            <Route path="/dashboards/reports" exact component={Reports} />
-
-            <Route path='/widgets' exact component={Widgets} />
-            
-            { /*    Cards Routes     */ }
-            <Route path='/cards/cards' exact component={Cards} />
-            <Route path='/cards/cardsheaders' exact component={CardsHeaders} />
-            
-            { /*    Layouts     */ }
-            <Route path='/layouts/navbar' component={NavbarOnly} />
-            <Route path='/layouts/sidebar' component={SidebarDefault} />
-            <Route path='/layouts/sidebar-a' component={SidebarA} />
-            <Route path="/layouts/sidebar-with-navbar" component={SidebarWithNavbar} />
-            <Route path='/layouts/dnd-layout' component={DragAndDropLayout} />
-
             { /*    Interface Routes   */ }
             <Route component={ Accordions } path="/interface/accordions" />
             <Route component={ Alerts } path="/interface/alerts" />
@@ -220,7 +201,6 @@ export const RoutedContent = () => {
             <Route component={ ComingSoon } path="/pages/coming-soon" />
             <Route component={ Danger } path="/pages/danger" />
             <Route component={ Error404 } path="/pages/error-404" />
-            <Route component={ LockScreen } path="/pages/lock-screen" />
             <Route component={ Success } path="/pages/success" />
             <Route component={ Timeline } path="/pages/timeline" />
 
@@ -229,23 +209,29 @@ export const RoutedContent = () => {
             <Route component={ Register } path="/register" />
             <Route component={ ForgotPassword } path="/forgot-password" />
             <Route component={ Confirmation } path="/confirmation" />
+            <Route component={ LockScreen } path="/lock-screen/:email" />
 
-            {/* Profile */}
-            <Route component={ ProfileDetails } path="/apps/profile-details" />
-            <Route component={ CandidateDetails } path="/my-candidate/profile-detail" />
+            <PrivateRoutes >
+                { /* Dashboard */}
+                <Route path="/dashboards/analytics" exact component={Analytics} />
 
-            {/* Voting */}
-            <Route component={ VotingRecord } path="/voting-record" />
-            <Route component={ VoteWizard } path="/vote/:id" />
-            <Route component={ Bills } path="/bills" />
+                {/* Profile */}
+                <Route component={ ProfileDetails } path="/apps/profile-details" />
+                <Route component={ CandidateDetails } path="/my-candidate/profile-detail" />
 
-            {/* Voting */}
-            <Route component={ Elections } path="/elections" />
-            <Route component={ Candidates } path="/candidates/:type" />
+                {/* Voting */}
+                <Route component={ VotingRecord } path="/voting-record" />
+                <Route component={ VoteWizard } path="/vote/:id" />
+                <Route component={ Bills } path="/bills" />
 
-            {/* Donate */}
-            <Route component={ DonateGrid } path="/donate" />
-            <Route component={ TablesContributions } path="/your-donations" />
+                {/* Voting */}
+                <Route component={ Elections } path="/elections" />
+                <Route component={ Candidates } path="/candidates/:type" />
+
+                {/* Donate */}
+                <Route component={ DonateGrid } path="/donate" />
+                <Route component={ TablesContributions } path="/your-donations" />
+            </PrivateRoutes>
 
             <Route path='/icons' exact component={Icons} />
 
@@ -254,6 +240,39 @@ export const RoutedContent = () => {
         </Switch>
     );
 };
+
+//------ Private Route --------
+export async function PrivateRoutes({ children, ...rest }) {
+    
+    let signedIn = true;
+    console.log('here');
+    await Auth.currentAuthenticatedUser()
+      .then(userData => {
+        signedIn = true;
+        console.log(userData);
+      })
+      .catch(() => {
+        signedIn = false;
+      });
+    
+    return (
+        <Route
+        {...rest}
+        render={({ location }) =>
+        signedIn ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    )
+}
 
 //------ Custom Layout Parts --------
 export const RoutedNavbars  = () => (
