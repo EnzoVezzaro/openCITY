@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 
 const FooterText = (props) => (
 	<React.Fragment>
+		{
+			/* 
 		(C) { props.year } All Rights Reserved. 
-		Built with ❤️ by { props.name }
+		Built with ❤️  by { props.name }	
+			*/
+		}
 	</React.Fragment>
 )
 FooterText.propTypes = {

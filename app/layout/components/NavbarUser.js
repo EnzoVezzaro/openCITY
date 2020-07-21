@@ -7,9 +7,21 @@ import {
     NavLink
 } from './../../components';
 
+// AWS
+import { Auth } from 'aws-amplify';
+
+const signOut = async () =>{
+    try {
+        await Auth.signOut();
+        window.location.replace(`/login`);
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+}
+
 const NavbarUser = (props) => (
     <NavItem { ...props }>
-        <NavLink tag={ Link } to="/login">
+        <NavLink tag={ Link } onClick={()=>signOut()}>
             <i className="fa fa-power-off"></i>
         </NavLink>
     </NavItem>
