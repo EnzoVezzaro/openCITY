@@ -4,7 +4,7 @@ function validateEmail(email) {
 }
 
 function validatePassword(pwd) {
-    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const re = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/g;
     return re.test(pwd);
 }
 

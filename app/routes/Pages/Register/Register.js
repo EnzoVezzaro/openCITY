@@ -38,8 +38,6 @@ class Register extends React.Component {
     }
 
     changeHandler = (e) => {
-        console.log(e.target.id);
-        console.log(e.target.value);
         switch(e.target.id) {
             case 'emailAddress':
                 this.setState({
@@ -70,7 +68,7 @@ class Register extends React.Component {
             submmitted: true
         })
         
-        console.log(this.state);
+        //console.log(this.state);
         if (!this.state.email){
             this.setState({
                 isEmailValid: false
@@ -83,9 +81,9 @@ class Register extends React.Component {
                 isPwdValid: false
             })   
         }
+        
         if (
-            (!this.state.password ||
-            !this.state.repeatPassword) &&
+            !this.state.repeatPassword ||
             this.state.password !== this.state.repeatPassword
         ) {
             this.setState({
@@ -93,17 +91,20 @@ class Register extends React.Component {
             })   
         }
 
-        if (
-            this.state.isEmailValid &&
-            this.state.isPwdValid &&
-            this.state.isRepeatPassword
-        ){
-            this.signUp();
-        }
+        setTimeout(() => {
+            if (
+                this.state.isEmailValid &&
+                this.state.isPwdValid &&
+                this.state.isRepeatPassword
+            ){
+                this.signUp();
+            }
+        }, 10);
                 
     }
 
     signUp = async () => {
+        const { email, password } = this.state;
         try {
             const user = await Auth.signUp({
                 username: this.state.email,
@@ -111,7 +112,11 @@ class Register extends React.Component {
             });
             console.log({ user });
             if (user){
-                console.log(this.props.history.push(`/lock-screen/${this.state.email}`));
+                this.props.history.push({
+                    pathname: `/lock-screen/${email}`,
+                    state: { pwd: password }
+                })
+                //this.props.history.push(`/lock-screen/${this.state.email}`);
             }
         } catch (error) {
             console.log('error signing up:', error);
@@ -147,7 +152,7 @@ class Register extends React.Component {
                     />
                     { /* END Header */}
                     { /* START Form */}
-                    <Form className="mb-3">
+                    <Form className="mb-3" onSubmit={ this.validateForm }>
                         <FormGroup>
                             <Label for="emailAdress">
                                 Email Adress
@@ -163,7 +168,7 @@ class Register extends React.Component {
                             </Label>
                             <Input type="password" name="password" id="password" placeholder="Password..." className={`${this.state.submmitted && this.state.isPwdValid ? 'is-valid' : this.state.submmitted && !this.state.isPwdValid ? 'is-invalid' : ''} bg-white`} onChange={ this.changeHandler } />
                             <div className="invalid-feedback">
-                                La password no es valida
+                                La contraseña debe tener un mínimo de 8 caracteres e incluir al menos una letra en mayúscula, otra en minúscula, un número y un simbolo.
                             </div>
                         </FormGroup>
                         <FormGroup>
@@ -196,9 +201,6 @@ class Register extends React.Component {
                         </Link>
                     </div>
                     { /* END Bottom Links */}
-                    { /* START Footer */}
-                    <FooterAuth />
-                    { /* END Footer */}
                     <Alert color="danger" isOpen={this.state.showAlert}>
                         <h6 className="mb-1 alert-heading">
                             Oh Snap!

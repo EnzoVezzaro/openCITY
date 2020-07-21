@@ -242,33 +242,22 @@ export const RoutedContent = () => {
 };
 
 //------ Private Route --------
-export async function PrivateRoutes({ children, ...rest }) {
+export function PrivateRoutes({ children, ...rest }) {
     
-    let signedIn = true;
-    console.log('here');
-    await Auth.currentAuthenticatedUser()
+    Auth.currentAuthenticatedUser()
       .then(userData => {
-        signedIn = true;
-        console.log(userData);
+        console.log(userData);    
       })
-      .catch(() => {
-        signedIn = false;
+      .catch((e) => {
+        console.log(e);    
+        window.location.replace("/login");
       });
     
     return (
         <Route
         {...rest}
         render={({ location }) =>
-        signedIn ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: location }
-              }}
-            />
-          )
+            (children)
         }
       />
     )

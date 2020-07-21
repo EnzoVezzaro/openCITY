@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import {
     Form,
     FormGroup,
+    Alert,
     FormText,
     Input,
-    CustomInput,
     Button,
     Label,
     EmptyLayout,
@@ -14,10 +14,12 @@ import {
 } from './../../../components';
 
 import { HeaderAuth } from "../../components/Pages/HeaderAuth";
-import { FooterAuth } from "../../components/Pages/FooterAuth";
 
 // utils
 import { validateEmail } from '../../../utils/regex'; 
+
+// AWS
+import { Auth } from 'aws-amplify';
 
 class Login extends React.Component {
     constructor(props){
@@ -25,32 +27,82 @@ class Login extends React.Component {
 
         this.state = {
             email: '',
-            pwd: '',
+            password: '',
             isEmailValid: true,
+            submmitted: false,
+            showAlert: false
         }
     }
 
     handleChange = (e) => {
-        console.log(e.currentTarget.value);
-        console.log(validateEmail(e.currentTarget.value));
-        this.setState({
-            [`${e.currentTarget.name}`]: e.currentTarget.value,
-            isEmailValid: validateEmail(e.currentTarget.value)
-        });
+        switch(e.target.id) {
+            case 'emailAddress':
+                this.setState({
+                    email: e.target.value,
+                    isEmailValid: validateEmail(e.currentTarget.value)
+                });
+                break;
+            case 'password':
+                this.setState({
+                    password: e.target.value
+                })
+                break;
+            default:
+              // code block
+        }
     }
 
     handleSubmit = () => {
-        console.log(this.state);
+        this.setState({
+            submmitted: true
+        })
         event.preventDefault();
         if (!this.state.email){
             this.setState({
                 isEmailValid: false
             })
-        } else if (this.state.email && this.state.isEmailValid){
-            alert('submit');
+        } else if (
+            this.state.email && 
+            this.state.isEmailValid &&
+            this.state.password
+        ){
+            this.signIn();
         }
+    }
 
-
+    signIn = async () => {
+        const { email, password } = this.state;
+        try {
+            const user = await Auth.signIn(email, password);
+            if (user){
+                console.log(user);
+                this.props.history.push(`dashboards/analytics`);
+            }
+        } catch (error) {
+            console.log('error signing up:', error);
+            switch (error.code) {
+                case "UserNotFoundException":
+                    this.setState({
+                        showAlert: true,
+                        alertBody: 'Este Email no esta registrada. Por favor, trate de nuevo.'
+                    })
+                    break;
+                case "NotAuthorizedException":
+                    this.setState({
+                        showAlert: true,
+                        alertBody: 'Email o password incorrecto.'
+                    })
+                    break;
+                default:
+                    break;
+            }
+            console.log('error confirming sign up', error);
+            setTimeout(() => {
+                this.setState({
+                    showAlert: false
+                })
+            }, 3000);
+        }
     }
 
     render(){
@@ -68,7 +120,7 @@ class Login extends React.Component {
                             <Label for="emailAdress">
                                 Email Adress
                             </Label>
-                            <Input type="email" name="email" id="emailAdress" placeholder="Enter email..." className={`${this.state.email !== '' && this.state.isEmailValid ? 'is-valid' : this.state.email !== '' && !this.state.isEmailValid ? 'is-invalid' : ''} bg-white`} onChange={this.handleChange} />
+                            <Input type="email" name="emailAddress" id="emailAddress" placeholder="Entra tu email..." className={`${this.state.submmitted && this.state.isEmailValid ? 'is-valid' : this.state.submmitted && !this.state.isEmailValid ? 'is-invalid' : ''} bg-white`} onChange={this.handleChange} />
                             <FormText color="muted">
                                 Tu email no sera compartida con nadie mas.
                             </FormText>
@@ -77,9 +129,8 @@ class Login extends React.Component {
                             <Label for="password">
                                 Password
                             </Label>
-                            <Input type="password" name="password" id="password" placeholder="Password..." className="bg-white" onChange={this.handleChange} />
+                            <Input type="password" name="password" id="password" placeholder="Password..." className={`${this.state.submmitted && this.state.password ? 'is-valid' : this.state.submmitted && !this.state.password ? 'is-invalid' : ''} bg-white`} onChange={this.handleChange} />
                         </FormGroup>
-                        
                         <ThemeConsumer>
                         {
                             ({ color }) => (
@@ -94,17 +145,19 @@ class Login extends React.Component {
                     { /* START Bottom Links */}
                     <div className="d-flex mb-5"> 
                         <Link to="/forgot-password" className="text-decoration-none">
-                            Forgot Password
+                            ¿Se te olvidó tu contraseña?
                         </Link>
                         <Link to="/register" className="ml-auto text-decoration-none">
-                            Register
+                            Crea Cuenta
                         </Link>
                     </div>
                     { /* END Bottom Links */}
-                    { /* START Footer 
-                    <FooterAuth />
-                    */}
-                    { /* END Footer */}
+                    <Alert color="warning" isOpen={this.state.showAlert}>
+                        <h6 className="mb-1 alert-heading">
+                            Oh Snap!
+                        </h6> 
+                        { this.state.alertBody }
+                    </Alert>
                 </EmptyLayout.Section>
             </EmptyLayout>
         )
